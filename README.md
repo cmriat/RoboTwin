@@ -1,6 +1,18 @@
 <h1 align="center">
   <a href="https://robotwin-benchmark.github.io"><b>RoboTwin</b> Bimanual Robotic Manipulation Platform<br></a>
 </h1>
+
+## 🚀 Quick Installation (From Cmriat)
+
+```bash
+# Install dependencies using pixi
+pixi shell
+pixi run install
+
+# Example data collection command
+bash collect_data.sh beat_block_hammer demo_randomized 0
+```
+
 <h2 align="center">Lastest Version: RoboTwin 2.0<br>🤲 <a href="https://robotwin-platform.github.io/">Webpage</a> | <a href="https://robotwin-platform.github.io/doc/">Document</a> | <a href="https://arxiv.org/abs/2506.18088">Paper</a> | <a href="https://robotwin-platform.github.io/doc/community/index.html">Community</a> | <a href="https://robotwin-platform.github.io/leaderboard">Leaderboard</a></h2>
 
 https://private-user-images.githubusercontent.com/88101805/463126988-e3ba1575-4411-4a36-ad65-f0b2f49890c3.mp4

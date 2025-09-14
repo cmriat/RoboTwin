@@ -11,7 +11,6 @@ version = "0.1.0"
 
 [tasks]
 install = "bash script/_install.sh"
-download_dataset = "bash script/_download_assets.sh"
 
 [system-requirements]
 cuda = "12.9"
