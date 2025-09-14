@@ -1,0 +1,60 @@
+[workspace]
+authors = ["Jingyi Xi <flotherxi@gmail.com>"]
+channels = [
+ "file:///data/conda",
+ "https://repo.prefix.dev/meta-forge",
+  "conda-forge",
+]
+name = "RoboTwin"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+install = "bash script/_install.sh"
+download_dataset = "bash script/_download_assets.sh"
+
+[system-requirements]
+cuda = "12.9"
+
+[dependencies]
+python = "3.10.*"
+cuda = "12.9.*"
+pip = "*"
+pytorch = { version = "*", build = "*cuda*"}
+
+pytorch3d = "*"
+torchvision = "*"
+nvidia-curobo = "*"
+
+av = "*"
+h5py = "*"
+zarr = "*"
+wandb = "*"
+openai = "*"
+ffmpeg = "*"
+pydantic = "*"
+moviepy = "*"
+termcolor = "*"
+matplotlib = "*"
+
+scipy = "==1.10.1"
+pyglet = "<2"
+open3d = "==0.18.0"
+trimesh = "==4.4.3"
+imageio = "==2.34.2"
+gymnasium = "==0.29.1"
+transforms3d = "==0.4.2"
+huggingface_hub = "==0.25.0"
+
+[pypi-dependencies]
+mplib = "==0.2.1"
+azure = "==4.0.0"
+sapien = "==3.0.0b1"
+azure-ai-inference = "*"
+
+[feature.dev.dependencies]
+pytest = "*"
+jupyterlab = "*"
+
+[environments]
+dev = { features = ["dev"], solve-group = "default" }

@@ -28,3 +28,6 @@ envs/curobo/*
 
 /*.json*
 /*.txt
+# pixi environments
+.pixi/*
+!.pixi/config.toml
