@@ -5,7 +5,7 @@ channels = [
  "https://repo.prefix.dev/meta-forge",
   "conda-forge",
 ]
-name = "RoboTwin"
+name = "robotwin"
 platforms = ["linux-64"]
 version = "0.1.0"
 
