@@ -8,10 +8,25 @@
 # Install dependencies using pixi
 pixi shell
 pixi run install
+bash script/_download_assets.sh
 
 # Example data collection command
 bash collect_data.sh beat_block_hammer demo_randomized 0
 ```
+
+## 🚀 Quick Collecting Data (From Cmriat)
+1. Set your own task configurations. example: task_config/demo_randomized.yml
+2. Excute following commands
+```bash
+bash collect_data.sh ${task_name} ${task_config} ${gpu_id}
+# Example: bash collect_data.sh beat_block_hammer demo_randomized 0
+```
+
+
+
+
+
+
 
 <h2 align="center">Lastest Version: RoboTwin 2.0<br>🤲 <a href="https://robotwin-platform.github.io/">Webpage</a> | <a href="https://robotwin-platform.github.io/doc/">Document</a> | <a href="https://arxiv.org/abs/2506.18088">Paper</a> | <a href="https://robotwin-platform.github.io/doc/community/index.html">Community</a> | <a href="https://robotwin-platform.github.io/leaderboard">Leaderboard</a></h2>
 
