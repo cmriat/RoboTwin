@@ -2,6 +2,12 @@
 import argparse
 import os
 import sys
+import io
+
+try:
+    import imageio.v2 as imageio  # preferred, present in this repo
+except Exception:  # pragma: no cover
+    imageio = None
 
 def _safe_shape(val):
     try:
@@ -36,6 +42,39 @@ def _safe_shape(val):
     return "scalar"
 
 
+def _maybe_decode_image_shape_from_struct(sample_val):
+    """Try to decode an image from a struct-like sample and return its shape.
+
+    Expects a mapping with a 'bytes' key containing encoded image bytes.
+    Returns a shape tuple like (H, W, C) or None if decoding fails/unavailable.
+    """
+    if sample_val is None:
+        return None
+    # Accept both dict-like and pyarrow struct converted to dict
+    try:
+        is_mapping = isinstance(sample_val, dict)
+    except Exception:
+        is_mapping = False
+    if not is_mapping:
+        return None
+    if "bytes" not in sample_val:
+        return None
+    if sample_val["bytes"] is None:
+        return None
+    if imageio is None:
+        return None
+    try:
+        bio = io.BytesIO(sample_val["bytes"])  # type: ignore[index]
+        img = imageio.imread(bio)
+        shp = getattr(img, "shape", None)
+        if shp is None:
+            return None
+        # Ensure ints
+        return tuple(int(x) for x in shp)
+    except Exception:
+        return None
+
+
 def inspect_with_pyarrow(path):
     try:
         import pyarrow.parquet as pq
@@ -61,7 +100,18 @@ def inspect_with_pyarrow(path):
                 example = None
         shape = _safe_shape(example)
         col_type = schema.field(i).type
-        print(f"- {name}: type={col_type}, sample_shape={shape}")
+        extra = ""
+        # If this is a struct with 'bytes' field (e.g., observation.images.*), try to decode to get true image shape
+        try:
+            pa = __import__("pyarrow")
+            if pa.types.is_struct(col_type):
+                # Best-effort: attempt to decode one example
+                decoded_shape = _maybe_decode_image_shape_from_struct(example)
+                if decoded_shape is not None:
+                    extra = f", decoded_image_shape={decoded_shape}"
+        except Exception:
+            pass
+        print(f"- {name}: type={col_type}, sample_shape={shape}{extra}")
     return True
 
 
@@ -86,7 +136,10 @@ def inspect_with_pandas(path):
         except Exception:
             example = None
         shape = _safe_shape(example)
-        print(f"- {name}: dtype={series.dtype}, sample_shape={shape}")
+        # Try to decode image shape for struct-like dicts with 'bytes'
+        decoded_shape = _maybe_decode_image_shape_from_struct(example)
+        extra = f", decoded_image_shape={decoded_shape}" if decoded_shape is not None else ""
+        print(f"- {name}: dtype={series.dtype}, sample_shape={shape}{extra}")
     return True
 
 
@@ -95,7 +148,7 @@ def main():
     parser.add_argument(
         "path",
         nargs="?",
-        default="lerobot_data/adjust_bottle-50ep-agilex-demo_clean/data/chunk-000/episode_000000.parquet",
+        default="/home/jovyan/repo/RoboTwin/policy/openpi/data/adjust_bottle/50ep-agilex-demo_clean/data/chunk-000/episode_000000.parquet",
         help="Path to .parquet file",
     )
     args = parser.parse_args()
@@ -115,4 +168,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
