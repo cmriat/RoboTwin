@@ -1,0 +1,83 @@
+[workspace]
+channels = ["https://repo.prefix.dev/meta-forge", "conda-forge"]
+name = "pi"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+typecheck = "pyright src"
+
+[system-requirements]
+cuda = "12.9"
+libc = { family = "glibc", version = "2.34" }
+
+[activation.env]
+"TORCH_CUDA_ARCH_LIST" = "9.0"
+"CUDA_HOME" = "$CONDA_PREFIX"
+
+[dependencies]
+python = "3.10.*"
+cuda = "12.9.*"
+pytorch = { version = "==2.7.1", build = "*cuda*" }
+tyro = ">=0.9.25,<0.10"
+wandb = "*"
+transformers = "==4.53.2"
+universal-pathlib = "*"
+datasets = "3.6.0.*"
+pip = "*"
+cuda-libraries-dev = "*"
+cusparselt = "*"
+ipynb-py-convert = ">=0.4.6,<0.5"
+absl-py = ">=2.2.0,<3"
+sortedcontainers = ">=2.4.0,<3"
+matplotlib = ">=3.10.1,<4"
+cloudpickle = "*"
+accelerate = "*"
+transformer-engine = { version = "==0.1", build = "patch*" }
+nvtx = "*"
+sentencepiece = ">=0.2.0,<0.3"
+numpydantic = ">=1.6.11,<2"
+etils = ">=1.12.2,<2"
+importlib_resources = ">=6.5.2,<7"
+rerun-sdk = "0.21.0.*"
+evdev = "<1.8"
+pytest = "*"
+gcsfs = "*"
+ffmpeg = "*"
+torchcodec = "*"
+jupyterlab-lsp = "*"
+python-lsp-server = "*"
+jupyterlab = "*"
+ipywidgets = "*"
+jupyterlab_execute_time = "*"
+posix_ipc = "*"
+websockets = "*"
+
+[pypi-dependencies]
+pi = { path = ".", editable = true }
+tqdm_loggable = ">=0.2, <0.3"
+lerobot = { git = "https://github.com/huggingface/lerobot", rev = "0cf864870cf29f4738d3ade893e6fd13fbd7cdb5" }
+# lerobot = "==0.1.0"
+
+[feature.dev.dependencies]
+ipywidgets = "*"
+nvtx = "*"
+flash-attn = { version = "==2.8.3", build = "py310_cuda129_pt271*" }
+flash-attn-3 = ">=2025.5.19,<2026"
+pre-commit = "*"
+ruff = "*"
+jupyterlab = ">=4.4.1,<5"
+pytest-asyncio = "*"
+pytest-profiling = ">=1.8.1,<2"
+line_profiler = ">=4.2.0,<5"
+pytest-xdist = ">=3.7.0,<4"
+pytest-mock = "*"
+torch-tb-profiler = ">=0.4.3,<0.5"
+jupytext = ">=1.17.3,<2"
+
+[feature.dev.pypi-dependencies]
+neopyter = "*"
+tlparse = "*"
+
+[environments]
+dev = { features = ["dev"], solve-group = "default" }

@@ -26,7 +26,7 @@ parent_directory = os.path.dirname(current_file_path)
 
 
 def class_decorator(task_name):
-    envs_module = importlib.import_module(f"envs.{task_name}")
+    envs_module = importlib.import_module(f"envs.{task_name}") 
     try:
         env_class = getattr(envs_module, task_name)
         env_instance = env_class()
@@ -36,9 +36,9 @@ def class_decorator(task_name):
 
 
 def eval_function_decorator(policy_name, model_name):
-    try:
-        policy_model = importlib.import_module(policy_name)
-        return getattr(policy_model, model_name)
+    try: 
+        policy_model = importlib.import_module(policy_name)   # # 会查找 ./policy/policy_name/目录, 执行 policy_name/__init__.py
+        return getattr(policy_model, model_name)  # # 相当于: get_model = model.get_model，这里还没有实例化传入参数
     except ImportError as e:
         raise e
 
@@ -157,10 +157,10 @@ def main(usr_args):
 
     seed = usr_args["seed"]
 
-    st_seed = 100000 * (1 + seed)
+    st_seed = 100000 * (1 + seed) # 起始种子，之后每测一次，种子+1
     suc_nums = []
     test_num = 100
-    topk = 1
+    # topk = 1
 
     model = get_model(usr_args)
     st_seed, suc_num = eval_policy(task_name,
@@ -173,7 +173,7 @@ def main(usr_args):
                                    instruction_type=instruction_type)
     suc_nums.append(suc_num)
 
-    topk_success_rate = sorted(suc_nums, reverse=True)[:topk]
+    # topk_success_rate = sorted(suc_nums, reverse=True)[:topk]
 
     file_path = os.path.join(save_dir, f"_result.txt")
     with open(file_path, "w") as file:
@@ -198,7 +198,7 @@ def eval_policy(task_name,
     print(f"\033[34mPolicy Name: {args['policy_name']}\033[0m")
 
     expert_check = True
-    TASK_ENV.suc = 0
+    TASK_ENV.suc = 0 # 记录在 test_num 次测试中,成功完成任务的次数
     TASK_ENV.test_num = 0
 
     now_id = 0
@@ -210,7 +210,7 @@ def eval_policy(task_name,
     reset_func = eval_function_decorator(policy_name, "reset_model")
 
     now_seed = st_seed
-    task_total_reward = 0
+    # task_total_reward = 0
     clear_cache_freq = args["clear_cache_freq"]
 
     args["eval_mode"] = True

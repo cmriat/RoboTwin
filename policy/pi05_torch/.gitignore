@@ -1,0 +1,41 @@
+# pixi environments
+.pixi
+*.egg-info
+
+# development
+dev
+_ign_**
+
+# vscode
+.vscode
+
+# cache
+**/__pycache__
+**/.ipynb_checkpoints
+
+.envrc
+.lazy.lua
+
+wandb
+
+**/output/
+
+.serena/cache
+
+.claude/*.local.*
+
+kjobctl
+
+tl_out
+*.err
+*.out
+tracedir
+
+saved_trace
+torch_cache
+mutagen.yml
+mutagen.yml.lock
+
+checkpoints/
+pi.xml
+data/*
