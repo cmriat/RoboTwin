@@ -626,7 +626,7 @@ _CONFIGS = [
         # dataset. For your own dataset, you can change the repo_id to point to your dataset.
         # Also modify the DataConfig to use the new config you made for your dataset above.
         data=LeRobotRoboTwinDataConfig(
-            repo_id="/home/jovyan/repo/Pi/data/adjust_bottle-50ep-agilex-demo_clean",
+            repo_id="/home/jovyan/repo/openpi/data/beat_block_hammer-50ep-agilex-demo_clean",
             base_config=DataConfig(
                 # This flag determines whether we load the prompt (i.e. the task instruction) from the
                 # ``task`` field in the LeRobot dataset. If set to True, the prompt will show up in
@@ -634,18 +634,20 @@ _CONFIGS = [
                 prompt_from_task=True,  
             ),
             extra_delta_transform=True,
-            assets=AssetsConfig(asset_id="robotwin_agilex"),
         ),
         
         batch_size=32,
         lr_schedule=_optimizer.CosineDecaySchedule(
-            warmup_steps=5_000,
+            warmup_steps=3000,
             peak_lr=5e-5,
-            decay_steps=500_000,
-            decay_lr=5e-5,
+            decay_steps=40000,
+            decay_lr=1e-5,
         ), 
+        log_interval=10,
         optimizer=_optimizer.AdamW(clip_gradient_norm=1.0),
         ema_decay=0.999,
+        save_interval=1000,
+        checkpoint_base_dir="/data/robot/checkpoints/pi05_jax",
         pytorch_weight_path="/data/private/robot/pi05_base_pytorch",
         num_train_steps=30_000, # 30000个batches
     ),

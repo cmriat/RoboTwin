@@ -1,6 +1,6 @@
 #!/bin/bash
 
-policy_name=pi05_jax # [TODO] 
+policy_name=pi05_torch # [TODO] 
 task_name=${1}
 task_config=${2}
 train_config_name=${3}
@@ -25,7 +25,8 @@ python script/eval_policy.py --config policy/$policy_name/deploy_policy.yml \
     --policy_name ${policy_name} 
     
 
-# 需要修改norm_stats.json的路径,需要修改config.py里的repo_id(不确定有没有必要)
-# bash eval.sh beat_block_hammer 50ep-agilex-demo_clean pi05_robotwin /data/robot/checkpoints/pi05_jax/pi05_robotwin/robotwin_jax_beat_block_hammer 0 0
+# bash eval.sh beat_block_hammer 50ep-agilex-demo_clean pi05_robotwin /data/robot/checkpoints/pi05/pi05_robotwin/robotwin_beat_block_hammer 0 1
 # --overrides 后面我在命令行里输入的参数，要覆盖配置文件（config）里已有的默认设置。
 # train_config_name 官方openpi里面policy/config.py里面的TrainConfig其中一个名字，这里我需要自己改成pi05_robotwin
+
+# bash eval.sh beat_block_hammer 50ep-agilex-demo_clean pi05_robotwin /data/robot/checkpoints/pi05_jax2torch 0 1

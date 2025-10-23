@@ -3,27 +3,24 @@
 """
 #!/usr/bin/python3
 """
-import json
-import sys
-import jax
 import numpy as np
 from pathlib import Path
-from openpi.models import model as _model
-from openpi.policies import aloha_policy
-from openpi.policies import policy_config as _policy_config
-from openpi.shared import download
-from openpi.training import config as _config
-from openpi.training import data_loader as _data_loader
-import openpi.shared.normalize as _normalize
+from pi.models import model as _model
+from pi.policies import aloha_policy
+from pi.policies import policy_config_torch as _policy_config
+from pi.shared import download
+from pi.training import config as _config
+from pi.training import data_loader as _data_loader
+import pi.shared.normalize as _normalize
 import os
 import cv2
 from PIL import Image
 
-from openpi.models import model as _model
-from openpi.policies import policy_config as _policy_config
-from openpi.shared import download
-from openpi.training import config as _config
-from openpi.training import data_loader as _data_loader
+from pi.models import model as _model
+from pi.policies import policy_config_torch as _policy_config
+from pi.shared import download
+from pi.training import config as _config
+from pi.training import data_loader as _data_loader
 
 
 class PI05:

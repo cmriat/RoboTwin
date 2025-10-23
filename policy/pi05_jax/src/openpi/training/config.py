@@ -1039,7 +1039,7 @@ _CONFIGS = [
         # dataset. For your own dataset, you can change the repo_id to point to your dataset.
         # Also modify the DataConfig to use the new config you made for your dataset above.
         data=LeRobotRoboTwinDataConfig(
-            repo_id="/home/jovyan/repo/openpi/data/adjust_bottle-50ep-agilex-demo_clean",
+            repo_id="/home/jovyan/repo/openpi/data/beat_block_hammer-50ep-agilex-demo_clean",
             base_config=DataConfig(
                 # This flag determines whether we load the prompt (i.e. the task instruction) from the
                 # ``task`` field in the LeRobot dataset. If set to True, the prompt will show up in
@@ -1062,7 +1062,7 @@ _CONFIGS = [
         save_interval=1000,
         checkpoint_base_dir="/data/robot/checkpoints/pi05_jax",
         weight_loader=weight_loaders.CheckpointWeightLoader("gs://openpi-assets/checkpoints/pi05_base/params"),
-        pytorch_weight_path="/data/private/robot/pi05_base_pytorch",
+        pytorch_weight_path="/data/robot/checkpoints/pi05_jax/pi05_robotwin/robotwin_jax_beat_block_hammer",
         num_train_steps=30_000, # 30000个batches
     ),
     TrainConfig(

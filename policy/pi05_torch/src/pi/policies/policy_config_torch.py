@@ -36,15 +36,15 @@ def create_trained_policy(
     repack_transforms = repack_transforms or transforms.Group()
     checkpoint_dir = download.maybe_download(str(checkpoint_dir))
 
-    # Require Torch checkpoint
+    # Try to load from safetensors first, fallback to distributed checkpoint
     weight_path = os.path.join(checkpoint_dir, "model.safetensors")
-    if not os.path.exists(weight_path):
-        raise FileNotFoundError(
-            f"Torch checkpoint not found: {weight_path}. This Torch-only helper expects 'model.safetensors'."
-        )
-
-    logging.info("Loading PyTorch model from safetensors...")
-    model = train_config.model.load_pytorch(train_config, weight_path)
+    if os.path.exists(weight_path):
+        logging.info("Loading PyTorch model from safetensors...")
+        model = train_config.model.load_pytorch(train_config, weight_path)
+    else:
+        # Try to load as distributed checkpoint
+        logging.info("Safetensors not found, attempting to load as distributed checkpoint...")
+        model = train_config.model.load_pytorch(train_config, str(checkpoint_dir))
     # Use bfloat16 where appropriate while keeping numerically sensitive params in float32.
     model.paligemma_with_expert.to_bfloat16_for_selected_params("bfloat16")
 

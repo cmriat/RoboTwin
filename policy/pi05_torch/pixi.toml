@@ -18,13 +18,14 @@ libc = { family = "glibc", version = "2.34" }
 [dependencies]
 python = "3.10.*"
 cuda = "12.9.*"
+numpy = "<2.0"
 pytorch = { version = "==2.7.1", build = "*cuda*" }
 tyro = ">=0.9.25,<0.10"
 wandb = "*"
 transformers = "==4.53.2"
 universal-pathlib = "*"
 datasets = "3.6.0.*"
-pip = "*"
+pip = ">=25.2,<26"
 cuda-libraries-dev = "*"
 cusparselt = "*"
 ipynb-py-convert = ">=0.4.6,<0.5"
@@ -58,6 +59,10 @@ pi = { path = ".", editable = true }
 tqdm_loggable = ">=0.2, <0.3"
 lerobot = { git = "https://github.com/huggingface/lerobot", rev = "0cf864870cf29f4738d3ade893e6fd13fbd7cdb5" }
 # lerobot = "==0.1.0"
+sapien = "==3.0.0b1"
+open3d = "==0.19.0"
+toppra = "==0.6.3"
+mplib = "==0.2.1"
 
 [feature.dev.dependencies]
 ipywidgets = "*"
