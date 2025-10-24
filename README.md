@@ -22,6 +22,16 @@ bash collect_data.sh ${task_name} ${task_config} ${gpu_id}
 # Example: bash collect_data.sh beat_block_hammer demo_randomized 0
 ```
 
+# install（10.24）
+sudo apt update
+sudo apt install libvulkan1 mesa-vulkan-drivers vulkan-tools ffmpeg
+sudo apt-get update 
+sudo apt-get install libgl1-mesa-glx libglib2.0-0 libsm6 libxext6 libxrender-dev libgomp1 libegl1 libgl1
+conda create -n robotwin python=3.10 -y
+conda activate robotwin
+git clone https://github.com/RoboTwin-Platform/RoboTwin.git
+conda install -c nvidia cuda-toolkit=12.8 -y
+bash script/_install.sh
 
 
 

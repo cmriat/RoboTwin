@@ -1,7 +1,7 @@
 # if you want to modify the config, please check the following tutorial first:
 # https://robotwin-platform.github.io/doc/usage/configurations.html
 render_freq: 0  # if=10, 仿真系统会执行 10 个物理步骤，但视觉界面只更新一次;这个参数就是用来可视化的，其他没有用
-episode_num: 2
+episode_num: 50
 use_seed: false
 save_freq: 20
 embodiment: [aloha-agilex]
@@ -31,7 +31,7 @@ data_type:
   actor_segmentation: false
 pcd_down_sample_num: 1024 # 当pointcloud=False时，这个设置不会生效
 pcd_crop: true # 当pointcloud=False时，这个设置不会生效
-save_path: /data/robotwin/robotwin_data
+save_path: ./data
 clear_cache_freq: 5
 collect_data: true
 eval_video_log: true
