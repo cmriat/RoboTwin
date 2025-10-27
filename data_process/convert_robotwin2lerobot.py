@@ -282,6 +282,7 @@ if __name__ == "__main__":
             
         except Exception as e:
             print(f"  ✗ 数据集 {dataset_name} 处理失败: {e}")
-            continue
+            print("程序终止！")
+            exit(1)
     
     print(f"\n所有数据集处理完成！")
