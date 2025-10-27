@@ -3,26 +3,7 @@
 </h1>
 
 ## 🚀 Quick Installation (From Cmriat)
-
 ```bash
-# Install dependencies using pixi
-pixi shell
-pixi run install
-bash script/_download_assets.sh
-
-# Example data collection command
-bash collect_data.sh beat_block_hammer demo_randomized 0
-```
-
-## 🚀 Quick Collecting Data (From Cmriat)
-1. Set your own task configurations. example: task_config/demo_randomized.yml
-2. Excute following commands
-```bash
-bash collect_data.sh ${task_name} ${task_config} ${gpu_id}
-# Example: bash collect_data.sh beat_block_hammer demo_randomized 0
-```
-
-# install（10.24）
 sudo apt update
 sudo apt install libvulkan1 mesa-vulkan-drivers vulkan-tools ffmpeg
 sudo apt-get update 
@@ -32,7 +13,26 @@ conda activate robotwin
 git clone https://github.com/RoboTwin-Platform/RoboTwin.git
 conda install -c nvidia cuda-toolkit=12.8 -y
 bash script/_install.sh
+```
 
+## 🚀 Quick Collecting Data (From Cmriat)
+1. Set your own task configurations. example: task_config/demo_randomized.yml
+2. Excute following commands
+```bash
+bash collect_data.sh ${task_name} ${task_config} ${gpu_id}
+# Example: bash collect_data.sh beat_block_hammer demo_randomized 0
+```
+## 🚀 Convert Robotwin data to Lerobot data for Pi model (From Cmriat)
+```bash
+cd policy/pi05_jax
+source source .venv/bin/activate
+cd ../..
+python data_process/convert_robotwin2lerobot.py (You need to modify input path and output path)
+```
+
+## 🚀 Convert Robotwin data to Lerobot data for GR00T model (From Cmriat)
+```bash
+```
 
 
 
