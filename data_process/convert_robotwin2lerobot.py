@@ -250,10 +250,38 @@ def main(input_path, output_path):
 
 
 if __name__ == "__main__":
-    # robotwin data path # modify to your own path
-    input_path = "/data/robotwin/robotwin_data/beat_block_hammer/aloha-agilex_demo-clean"
-
-    # lerobot data path # modify to your own path
-    output_path = "/data/robotwin/pi_data/beat_block_hammer/aloha-agilex_demo-clean"
-
-    main(input_path, output_path)
+    # 处理所有数据集
+    base_input_path = "/data/robotwin/robotwin_data"
+    base_output_path = "/data/robotwin/pi_data"
+    
+    # 获取所有数据集目录
+    dataset_dirs = [d for d in os.listdir(base_input_path) 
+                   if os.path.isdir(os.path.join(base_input_path, d))]
+    
+    print(f"找到 {len(dataset_dirs)} 个数据集目录: {dataset_dirs}")
+    
+    for dataset_name in dataset_dirs:
+        print(f"\n开始处理数据集: {dataset_name}")
+        
+        # 构建输入和输出路径
+        input_path = os.path.join(base_input_path, dataset_name, "aloha-agilex_demo-clean")
+        output_path = os.path.join(base_output_path, dataset_name, "aloha-agilex_demo-clean")
+        
+        # 检查输入路径是否存在
+        if not os.path.exists(input_path):
+            print(f"  警告: 输入路径不存在，跳过: {input_path}")
+            continue
+            
+        try:
+            print(f"  输入路径: {input_path}")
+            print(f"  输出路径: {output_path}")
+            
+            # 处理单个数据集
+            main(input_path, output_path)
+            print(f"  ✓ 数据集 {dataset_name} 处理完成")
+            
+        except Exception as e:
+            print(f"  ✗ 数据集 {dataset_name} 处理失败: {e}")
+            continue
+    
+    print(f"\n所有数据集处理完成！")
