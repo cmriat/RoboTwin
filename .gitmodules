@@ -1,6 +1,6 @@
-[submodule "policy/openpi"]
-	path = policy/openpi
-	url = https://github.com/cmriat/openpi.git
 [submodule "policy/Pi"]
 	path = policy/Pi
 	url = https://github.com/cmriat/Pi.git
+[submodule "policy/openpi-official"]
+	path = policy/openpi-official
+	url = https://github.com/cmriat/openpi-official.git
