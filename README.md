@@ -35,6 +35,21 @@ python data_process/convert_robotwin2lerobot.py (You need to modify input path a
 ```
 
 
+## 🚀 Evaluate Model on Robotwin Environment (From Cmriat)
+```bash
+cd policy/Pi
+pixi shell
+cd ../..
+cd envs/curobo
+pip install -e . --no-build-isolation
+
+更改deploy_policy.yml里面参数
+确认/home/jovyan/repo/RoboTwin/policy/Pi/src/pi/training/instance_config.py里面参数
+
+更改TrainConfig里面参数, num_step(diffusion step根据训练修改)
+state_delay_frames一定是0在仿真环境里
+```
+
 
 
 
