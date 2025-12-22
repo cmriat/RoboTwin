@@ -4,6 +4,3 @@
 [submodule "policy/openpi-official"]
 	path = policy/openpi-official
 	url = https://github.com/cmriat/openpi-official.git
-[submodule "policy/VisioBot"]
-	path = policy/VisioBot
-	url = https://github.com/cmriat/VisioBot.git
