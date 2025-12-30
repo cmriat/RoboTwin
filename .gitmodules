@@ -7,4 +7,4 @@
 [submodule "policy/GR00T"]
 	path = policy/GR00T
 	url = https://github.com/cmriat/GR00T.git
-	branch = baseline
+	branch = modify_backbone
