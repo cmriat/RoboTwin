@@ -274,7 +274,8 @@ def main(input_path, output_path):
 if __name__ == "__main__":
     # 处理所有数据集
     base_input_path = "/data/robotwin/robotwin_data"
-    base_output_path = "/data/robotwin/groot_data_new"
+    base_output_path = "/data/robotwin/groot_data_xx"
+    embodiment_name = "agilex_clean"
     
     # 获取所有数据集目录
     dataset_dirs = [d for d in os.listdir(base_input_path) 
@@ -286,8 +287,8 @@ if __name__ == "__main__":
         print(f"\n开始处理数据集: {dataset_name}")
         
         # 构建输入和输出路径
-        input_path = os.path.join(base_input_path, dataset_name, "aloha-agilex_demo-clean")
-        output_path = os.path.join(base_output_path, dataset_name, "aloha-agilex_demo-clean")
+        input_path = os.path.join(base_input_path, dataset_name, embodiment_name)
+        output_path = os.path.join(base_output_path, dataset_name, embodiment_name)
         
         # 检查输入路径是否存在
         if not os.path.exists(input_path):
