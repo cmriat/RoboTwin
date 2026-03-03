@@ -8,3 +8,6 @@
 	path = policy/GR00T
 	url = git@github.com:cmriat/GR00T.git
 	branch = gr00t/robotwin/old_backbone
+[submodule "/home/jovyan/repo/RoboTwin/policy/LLVM"]
+	path = /home/jovyan/repo/RoboTwin/policy/LLVM
+	url = git@github.com:cmriat/LLVM.git
