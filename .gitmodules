@@ -6,5 +6,5 @@
 	url = https://github.com/cmriat/openpi-official.git
 [submodule "policy/GR00T"]
 	path = policy/GR00T
-	url = https://github.com/cmriat/GR00T.git
-	branch = modify_backbone
+	url = git@github.com:cmriat/GR00T.git
+	branch = gr00t/robotwin/old_backbone
