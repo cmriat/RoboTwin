@@ -11,3 +11,5 @@
 [submodule "/home/jovyan/repo/RoboTwin/policy/LLVM"]
 	path = /home/jovyan/repo/RoboTwin/policy/LLVM
 	url = git@github.com:cmriat/LLVM.git
+[submodule "policy/LLVM"]
+	branch = xx/gr00tn15
